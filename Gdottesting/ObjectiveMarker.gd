@@ -10,5 +10,6 @@ func _ready():
 func _process(delta):
 	pass
 
-func _on_area_entered(area):
-	print("objective reached!")
+func _on_area_entered(body):
+	if body.is_in_group("player"):
+		print("objective reached!")

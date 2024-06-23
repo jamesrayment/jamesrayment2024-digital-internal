@@ -14,13 +14,13 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("Shoot"):
+		_shoot()
 		if aimcast.is_colliding():
 			var target = aimcast.get_collider().get_parent()
 			print(target)
 			if target.is_in_group("enemy"):
 				print("hit enemy")
 				target.health -= damage
-		_shoot()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -29,3 +29,4 @@ func _process(delta):
 
 func _shoot():
 	ANIMATIONPLAYER.play("Shoot")
+
