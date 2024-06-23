@@ -1,0 +1,219 @@
+[gd_scene load_steps=21 format=3 uid="uid://d23f0gp6mrbk0"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_bfrp1"]
+[ext_resource type="PackedScene" uid="uid://cttmlol7ryty6" path="res://guntextured.glb" id="2_gb56c"]
+[ext_resource type="Script" path="res://gun.gd" id="3_04fb4"]
+[ext_resource type="Script" path="res://TestBox.gd" id="4_5i2h8"]
+[ext_resource type="PackedScene" uid="uid://lfmxryqqwk5v" path="res://ObjectiveMarker.tscn" id="5_iuyvw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g0yss"]
+size = Vector3(23.6068, 7.04395, 21.5427)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hx5da"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4flp0"]
+albedo_color = Color(1, 1, 0.0313726, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qcfni"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1pgd1"]
+
+[sub_resource type="Animation" id="Animation_1iv58"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D:shape:height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape3D/Neck:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.10844, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape3D/Neck/guntextured:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.00283593, -3.06543, 0.00967595)]
+}
+
+[sub_resource type="Animation" id="Animation_a422s"]
+resource_name = "Shoot"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D/Neck/guntextured:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.00283593, -3.06543, 0.00967595), Vector3(-0.352556, -3.0648, 0.010472), Vector3(0.00349066, -3.0648, 0.010472)]
+}
+
+[sub_resource type="Animation" id="Animation_lxcpf"]
+resource_name = "crouch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D:shape:height")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 1.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape3D/Neck:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.10844, 0), Vector3(0, -0.388046, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ug4j"]
+_data = {
+"RESET": SubResource("Animation_1iv58"),
+"Shoot": SubResource("Animation_a422s"),
+"crouch": SubResource("Animation_lxcpf")
+}
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_atjff"]
+
+[sub_resource type="Sky" id="Sky_14bn6"]
+sky_material = SubResource("ProceduralSkyMaterial_atjff")
+
+[sub_resource type="Environment" id="Environment_ss84d"]
+background_mode = 2
+background_energy_multiplier = 2.85
+sky = SubResource("Sky_14bn6")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_665cj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lirsx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spbv3"]
+albedo_color = Color(1, 0, 1, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0150234, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1.00594, 0, 0, 0, 1.39302, 0, 0, 0, 1.00594, 0.0166652, 0.185735, 0.0632324)
+shape = SubResource("BoxShape3D_g0yss")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="StaticBody3D"]
+transform = Transform3D(23.0103, 0, 0, 0, 9.92455, 0, 0, 0, 21.8994, 0, 0, 0)
+mesh = SubResource("BoxMesh_hx5da")
+material = SubResource("StandardMaterial3D_4flp0")
+
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("ANIMATIONPLAYER")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.2172, 0)
+script = ExtResource("1_bfrp1")
+ANIMATIONPLAYER = NodePath("AnimationPlayer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_qcfni")
+
+[node name="Neck" type="Node3D" parent="Player/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10844, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/CollisionShape3D/Neck"]
+transform = Transform3D(1, 0, 0, 0, 0.999674, 0.025514, 0, -0.025514, 0.999674, 0.0582374, 0.654081, -0.00327301)
+
+[node name="Aimcast" type="RayCast3D" parent="Player/CollisionShape3D/Neck/Camera3D"]
+transform = Transform3D(-0.0387203, 0.000366286, -0.00295487, 0.000300272, 0.0388235, 0.000877851, 0.00296232, 0.000852419, -0.038712, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+target_position = Vector3(2.08165e-12, 2.08165e-12, 10000)
+
+[node name="guntextured" parent="Player/CollisionShape3D/Neck" node_paths=PackedStringArray("ANIMATIONPLAYER") instance=ExtResource("2_gb56c")]
+transform = Transform3D(-0.0387203, 0.000366287, -0.00295487, 0.000375754, 0.0388326, -0.000110132, 0.00295369, -0.000138399, -0.0387218, 0.703, 0.0820007, -0.6)
+script = ExtResource("3_04fb4")
+ANIMATIONPLAYER = NodePath("../../../AnimationPlayer")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_1pgd1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_2ug4j")
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ss84d")
+
+[node name="Node3D" type="Node3D" parent="." groups=["coins"]]
+
+[node name="Node3D2" type="Node3D" parent="." groups=["coins"]]
+
+[node name="Node3D3" type="Node3D" parent="." groups=["coins"]]
+
+[node name="TestBox" type="Node3D" parent="." groups=["enemy"]]
+script = ExtResource("4_5i2h8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TestBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.96573, -8.24483)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestBox/StaticBody3D"]
+shape = SubResource("BoxShape3D_665cj")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="TestBox/StaticBody3D"]
+mesh = SubResource("BoxMesh_lirsx")
+material = SubResource("StandardMaterial3D_spbv3")
+
+[node name="Area3D" parent="." instance=ExtResource("5_iuyvw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 3.0622, 2.31668)
