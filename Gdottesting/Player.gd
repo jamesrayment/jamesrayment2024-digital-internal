@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
+var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 #crouching
@@ -75,6 +75,12 @@ func _physics_process(delta):
 
 	global.player_coins += 1
 	#print(global.player_coins)
+
+	#sprint mechanics
+	if Input.is_action_just_pressed("Shift"):
+		SPEED = 10.0
+	elif Input.is_action_just_released("Shift"):
+		SPEED = 5.0
 
 func toggle_crouch():
 	if _is_crouching == true:

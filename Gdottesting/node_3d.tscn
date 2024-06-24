@@ -12,7 +12,7 @@ size = Vector3(23.6068, 7.04395, 21.5427)
 [sub_resource type="BoxMesh" id="BoxMesh_hx5da"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4flp0"]
-albedo_color = Color(1, 1, 0.0313726, 1)
+albedo_color = Color(0.6, 1, 0.752941, 0.54902)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qcfni"]
 
