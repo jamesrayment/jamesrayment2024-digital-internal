@@ -229,5 +229,19 @@ shape = SubResource("BoxShape3D_665cj")
 mesh = SubResource("BoxMesh_lirsx")
 material = SubResource("StandardMaterial3D_spbv3")
 
+[node name="TestBox2" type="Node3D" parent="." groups=["enemy"]]
+transform = Transform3D(0.893247, 0, 0, 0, 0.893247, 0, 0, 0, 0.893247, -0.529117, 0.361814, 17.5456)
+script = ExtResource("4_5i2h8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TestBox2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.96573, -8.24483)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestBox2/StaticBody3D"]
+shape = SubResource("BoxShape3D_665cj")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="TestBox2/StaticBody3D"]
+mesh = SubResource("BoxMesh_lirsx")
+material = SubResource("StandardMaterial3D_spbv3")
+
 [node name="Area3D" parent="." instance=ExtResource("5_iuyvw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 3.0622, 2.31668)
