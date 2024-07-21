@@ -16,6 +16,9 @@ func _input(event):
 	if event.is_action_pressed("Shoot"):
 		_shoot()
 		
+	if event.is_action_pressed("Reload"):
+		_reload()
+		
 
 func dealdamage():
 	if aimcast.is_colliding():
@@ -25,7 +28,8 @@ func dealdamage():
 				print("hit enemy")
 				target.health -= damage
 
-
+func reload():
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -35,3 +39,5 @@ func _process(delta):
 func _shoot():
 	ANIMATIONPLAYER.play("Shoot")
 
+func _reload():
+	ANIMATIONPLAYER.play("Reload")
