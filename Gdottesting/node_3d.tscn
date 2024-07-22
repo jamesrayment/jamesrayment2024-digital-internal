@@ -69,6 +69,36 @@ tracks/3/keys = {
 "values": [Vector3(0.00283593, -3.06543, 0.00967595)]
 }
 
+[sub_resource type="Animation" id="Animation_pv6u8"]
+resource_name = "Reload"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape3D/Neck/guntextured:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.00283593, -3.06543, 0.00967595), Vector3(0.436332, -3.0648, 0.010472), Vector3(1.5708, -3.0648, 0.010472), Vector3(3.14159, -3.0648, 0.010472), Vector3(5.23599, -3.0648, 0.010472), Vector3(5.75959, -3.0648, 0.010472), Vector3(6.02139, -3.0648, 0.010472), Vector3(6.28319, -3.0648, 0.010472)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D/Neck/guntextured")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reloadfinish"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_a422s"]
 resource_name = "Shoot"
 length = 0.2
@@ -136,22 +166,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0.10844, 0), Vector3(0, -0.388046, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_pv6u8"]
-resource_name = "Reload"
-length = 0.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape3D/Neck/guntextured:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.00283593, -3.06543, 0.00967595), Vector3(0.436332, -3.0648, 0.010472), Vector3(1.5708, -3.0648, 0.010472), Vector3(3.14159, -3.0648, 0.010472), Vector3(5.23599, -3.0648, 0.010472), Vector3(5.75959, -3.0648, 0.010472), Vector3(6.02139, -3.0648, 0.010472), Vector3(6.28319, -3.0648, 0.010472)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2ug4j"]

@@ -6,21 +6,35 @@ extends Node3D
 #damage
 var damage = 50
 
+#reload check
+var reloading = false
+
+#ammo
+var ammo = 0
+
 @onready var aimcast = get_node("/root/Node3D/Player/CollisionShape3D/Neck/Camera3D/Aimcast")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	ammo = 10
 
 func _input(event):
-	if event.is_action_pressed("Shoot"):
-		_shoot()
+	if event.is_action_pressed("Shoot") and reloading == false:
+		if ammo > 0:
+			_shoot()
+		else:
+			pass
+	else:
+		pass
 		
 	if event.is_action_pressed("Reload"):
+		reloading = true
 		_reload()
 		
 
 func dealdamage():
+	ammo -= 1
+	print(ammo)
 	if aimcast.is_colliding():
 			var target = aimcast.get_collider().get_parent()
 			print(target)
@@ -35,9 +49,14 @@ func reload():
 func _process(delta):
 	pass
 
-
 func _shoot():
 	ANIMATIONPLAYER.play("Shoot")
 
 func _reload():
 	ANIMATIONPLAYER.play("Reload")
+	
+func reloadfinish():
+	ammo = 10
+	print(ammo)
+	reloading = false
+	
