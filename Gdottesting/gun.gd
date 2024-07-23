@@ -35,6 +35,7 @@ func _input(event):
 func dealdamage():
 	ammo -= 1
 	print(ammo)
+	get_node("/root/Node3D/Player/CollisionShape3D/Neck/currentammo").text = str(ammo)
 	if aimcast.is_colliding():
 			var target = aimcast.get_collider().get_parent()
 			print(target)
@@ -58,5 +59,6 @@ func _reload():
 func reloadfinish():
 	ammo = 10
 	print(ammo)
+	get_node("/root/Node3D/Player/CollisionShape3D/Neck/currentammo").text = str(ammo)
 	reloading = false
 	
