@@ -11,6 +11,7 @@ var reloading = false
 
 #ammo
 var ammo = 0
+var pistolmaxammo = 10
 
 @onready var aimcast = get_node("/root/Node3D/Player/CollisionShape3D/Neck/Camera3D/Aimcast")
 
@@ -27,9 +28,10 @@ func _input(event):
 	else:
 		pass
 		
-	if event.is_action_pressed("Reload"):
+	if event.is_action_pressed("Reload") and reloading == false:
 		reloading = true
 		_reload()
+		
 		
 
 func dealdamage():
@@ -42,9 +44,6 @@ func dealdamage():
 			if target.is_in_group("enemy"):
 				print("hit enemy")
 				target.health -= damage
-
-func reload():
-	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

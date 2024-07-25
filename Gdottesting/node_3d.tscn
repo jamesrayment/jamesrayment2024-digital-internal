@@ -301,4 +301,5 @@ material = SubResource("StandardMaterial3D_spbv3")
 [node name="Area3D" parent="." instance=ExtResource("5_iuyvw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 3.0622, 2.31668)
 
-[node name="enemy" parent="." instance=ExtResource("7_ldurk")]
+[node name="enemy" parent="." groups=["enemy"] instance=ExtResource("7_ldurk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63269, 0)
