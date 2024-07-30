@@ -4,7 +4,7 @@ extends Node3D
 @export var ANIMATIONPLAYER : AnimationPlayer
 
 #damage
-var damage = 50
+var damage = 20
 
 #reload check
 var reloading = false
@@ -39,7 +39,7 @@ func dealdamage():
 	print(ammo)
 	get_node("/root/Node3D/Player/CollisionShape3D/Neck/currentammo").text = str(ammo)
 	if aimcast.is_colliding():
-			var target = aimcast.get_collider().get_parent()
+			var target = aimcast.get_collider()
 			print(target)
 			if target.is_in_group("enemy"):
 				print("hit enemy")
