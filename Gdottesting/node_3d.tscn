@@ -1,9 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://d23f0gp6mrbk0"]
+[gd_scene load_steps=21 format=3 uid="uid://d23f0gp6mrbk0"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_bfrp1"]
 [ext_resource type="PackedScene" uid="uid://cttmlol7ryty6" path="res://guntextured.glb" id="2_gb56c"]
 [ext_resource type="Script" path="res://gun.gd" id="3_04fb4"]
-[ext_resource type="Script" path="res://TestBox.gd" id="4_5i2h8"]
 [ext_resource type="Texture2D" uid="uid://cmg2edydvvbiv" path="res://KovaaK-Crosshair.png" id="4_wqp5w"]
 [ext_resource type="PackedScene" uid="uid://lfmxryqqwk5v" path="res://ObjectiveMarker.tscn" id="5_iuyvw"]
 [ext_resource type="PackedScene" uid="uid://bpj523gc7ifgh" path="res://enemy.tscn" id="7_ldurk"]
@@ -190,13 +189,6 @@ background_mode = 2
 background_energy_multiplier = 2.85
 sky = SubResource("Sky_14bn6")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_665cj"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_lirsx"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spbv3"]
-albedo_color = Color(1, 0, 1, 1)
-
 [node name="Node3D" type="Node3D"]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -271,35 +263,12 @@ environment = SubResource("Environment_ss84d")
 
 [node name="Node3D3" type="Node3D" parent="." groups=["coins"]]
 
-[node name="TestBox" type="Node3D" parent="." groups=["enemy"]]
-script = ExtResource("4_5i2h8")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="TestBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.96573, -8.24483)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestBox/StaticBody3D"]
-shape = SubResource("BoxShape3D_665cj")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="TestBox/StaticBody3D"]
-mesh = SubResource("BoxMesh_lirsx")
-material = SubResource("StandardMaterial3D_spbv3")
-
-[node name="TestBox2" type="Node3D" parent="." groups=["enemy"]]
-transform = Transform3D(0.893247, 0, 0, 0, 0.893247, 0, 0, 0, 0.893247, -0.529117, 0.361814, 17.5456)
-script = ExtResource("4_5i2h8")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="TestBox2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.96573, -8.24483)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestBox2/StaticBody3D"]
-shape = SubResource("BoxShape3D_665cj")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="TestBox2/StaticBody3D"]
-mesh = SubResource("BoxMesh_lirsx")
-material = SubResource("StandardMaterial3D_spbv3")
-
 [node name="Area3D" parent="." instance=ExtResource("5_iuyvw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 3.0622, 2.31668)
 
 [node name="enemy" parent="." groups=["enemy"] instance=ExtResource("7_ldurk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63269, -4.53697)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63269, 0.366423)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(3.05199, 0, 0, 0, 1.93293, 0, 0, 0, 3.05199, -1.97081, 1.56343, -6.42631)
+use_collision = true
