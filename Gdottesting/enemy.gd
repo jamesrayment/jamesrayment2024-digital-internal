@@ -1,14 +1,22 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const SPEED = 2.0
+const JUMP_VELOCITY = 10
 
 #enemy health
 var health = 100
 
+@onready var nav_agent = $NavigationAgent3D
+@onready var player = $"../Player"
+var run_speed = 1
+
+
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+var playerspotted = false
 
 func _ready():
 	pass
@@ -17,13 +25,25 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-		
+	# Enemy is delted when health is equal or lesser than 0
 	if health <= 0:
 		queue_free()
-
-	move_and_slide()
-
+		
+	var player = get_node("/root/Node3D/Player")
 	
+	if playerspotted == true:
+		look_at(player.global_position)
+		var current_location = global_transform.origin
+		var next_location = nav_agent.get_next_path_position()
+		var new_velocity = (next_location - current_location).normalized()*SPEED
+		velocity = velocity.move_toward(new_velocity, 2000)
+	elif playerspotted == false:
+		velocity = Vector3.ZERO
+		get_tree().create_timer(1.0)
+	else:
+		pass
+	
+	move_and_slide()
 
 
 func _on_vision_timer_timeout():
@@ -39,8 +59,13 @@ func _on_vision_timer_timeout():
 					var collider = $VisionRaycast.get_collider()
 					
 					if collider.is_in_group("player"):
+						playerspotted = true
 						$VisionRaycast.debug_shape_custom_color = Color(174, 0, 0)
 						print("Target spotted")
 					else:
+						playerspotted = false
 						$VisionRaycast.debug_shape_custom_color = Color(0, 255, 0)
 						print("Target lost")
+
+func update_target_location(target_location):
+	nav_agent.set_target_position(target_location)
