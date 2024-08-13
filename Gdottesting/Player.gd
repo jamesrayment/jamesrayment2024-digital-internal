@@ -4,6 +4,8 @@ extends CharacterBody3D
 var SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+var health = 100
+
 #crouching
 @export var ANIMATIONPLAYER : AnimationPlayer
 @export_range(5, 10, 0.1) var crouch_speed : float = 7.0
@@ -69,6 +71,9 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+		
+	if health <= 0:
+		queue_free()
 
 	move_and_slide()
 
@@ -87,3 +92,14 @@ func toggle_crouch():
 	elif _is_crouching == false:
 		ANIMATIONPLAYER.play("crouch", -1, crouch_speed)
 	_is_crouching = !_is_crouching
+
+
+func _on_body_3d_area_entered(body):
+	if body.is_in_group("enemy"):
+		print(health)
+		health -= 25
+
+
+func _on_enemy_enemy_hit():
+	health -= 50
+	print(health)

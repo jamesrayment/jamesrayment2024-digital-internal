@@ -11,6 +11,10 @@ var health = 100
 @onready var player = $"../Player"
 var run_speed = 1
 
+var enemy_in_range = false
+
+signal enemy_hit
+
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -44,7 +48,14 @@ func _physics_process(delta):
 		pass
 	
 	move_and_slide()
-
+	
+	#check for if enemy can hit player
+	if enemy_in_range == true:
+		emit_signal("enemy_hit")
+		enemy_in_range = false
+	else:
+		pass
+	
 
 func _on_vision_timer_timeout():
 	var overlaps = $VisionCone.get_overlapping_bodies()
@@ -69,3 +80,10 @@ func _on_vision_timer_timeout():
 
 func update_target_location(target_location):
 	nav_agent.set_target_position(target_location)
+
+
+func _on_attack_area_body_entered(body):
+	if body.is_in_group("player"):
+		enemy_in_range = true
+	else:
+		enemy_in_range = false
