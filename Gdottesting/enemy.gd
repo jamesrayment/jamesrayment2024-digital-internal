@@ -13,6 +13,8 @@ var run_speed = 1
 
 var enemy_in_range = false
 
+var player_dead = false
+
 signal enemy_hit
 
 
@@ -32,16 +34,18 @@ func _physics_process(delta):
 	# Enemy is delted when health is equal or lesser than 0
 	if health <= 0:
 		queue_free()
-		
-	var player = get_node("/root/Node3D/Player")
+	if player_dead == false:
+		var player = get_node("/root/Node3D/Player")
+	else:
+		pass
 	
-	if playerspotted == true:
+	if playerspotted == true and player_dead == false:
 		look_at(player.global_position)
 		var current_location = global_transform.origin
 		var next_location = nav_agent.get_next_path_position()
 		var new_velocity = (next_location - current_location).normalized()*SPEED
 		velocity = velocity.move_toward(new_velocity, 2000)
-	elif playerspotted == false:
+	elif playerspotted == false and player_dead == false:
 		velocity = Vector3.ZERO
 		get_tree().create_timer(1.0)
 	else:
@@ -87,3 +91,7 @@ func _on_attack_area_body_entered(body):
 		enemy_in_range = true
 	else:
 		enemy_in_range = false
+
+
+func _on_player_player_death():
+	player_dead = true

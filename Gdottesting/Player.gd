@@ -6,6 +6,8 @@ const JUMP_VELOCITY = 4.5
 
 var health = 100
 
+signal player_death
+
 #crouching
 @export var ANIMATIONPLAYER : AnimationPlayer
 @export_range(5, 10, 0.1) var crouch_speed : float = 7.0
@@ -73,6 +75,7 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
 	if health <= 0:
+		emit_signal("player_death")
 		queue_free()
 
 	move_and_slide()

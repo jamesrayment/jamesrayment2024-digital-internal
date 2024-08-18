@@ -265,10 +265,10 @@ environment = SubResource("Environment_ss84d")
 [node name="Node3D3" type="Node3D" parent="." groups=["coins"]]
 
 [node name="Area3D" parent="." instance=ExtResource("5_iuyvw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 3.0622, 2.31668)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.21923, 8.57783)
 
 [node name="enemy" parent="." groups=["enemy"] instance=ExtResource("7_ldurk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63269, 0.366423)
+transform = Transform3D(0.343496, 0, 0.939154, 0, 1, 0, -0.939154, 0, 0.343496, 10.6409, 1.1023, 5.10876)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0150234, 0, 0, 0, 1, 0, 0, 0)
@@ -286,8 +286,14 @@ mesh = SubResource("BoxMesh_hx5da")
 material = SubResource("StandardMaterial3D_4flp0")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(4.105, 0, 0, 0, 173.063, 0, 0, 0, 4.105, -1.97081, 86.3806, -6.42631)
+transform = Transform3D(18.878, 0, 0, 0, 227.774, 0, 0, 0, 3.97166, -2.06381, 118.157, 4.44135)
 use_collision = true
 
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(23.0287, 0, 0, 0, 227.774, 0, 0, 0, 3.97166, -0.0653253, 118.157, -4.45118)
+use_collision = true
+
+[connection signal="player_death" from="Player" to="." method="_on_player_player_death"]
+[connection signal="player_death" from="Player" to="enemy" method="_on_player_player_death"]
 [connection signal="area_entered" from="Player/Area3D" to="Player" method="_on_area_3d_area_entered"]
 [connection signal="enemy_hit" from="enemy" to="Player" method="_on_enemy_enemy_hit"]
