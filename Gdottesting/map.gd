@@ -16,3 +16,4 @@ func _process(delta):
 
 func _on_player_player_death():
 	player_dead = true
+	get_tree().quit()

@@ -13,3 +13,5 @@ func _process(delta):
 func _on_body_entered(body):
 	if body.is_in_group("player"):
 		print("objective reached!")
+		get_tree().create_timer(1.0)
+		get_tree().quit()
