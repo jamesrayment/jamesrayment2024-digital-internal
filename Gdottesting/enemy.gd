@@ -17,6 +17,7 @@ var player_dead = false
 
 signal enemy_hit
 
+@export var ANIMATIONPLAYER : AnimationPlayer
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -25,7 +26,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var playerspotted = false
 
 func _ready():
-	pass
+	ANIMATIONPLAYER.play("enemyrotate")
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -47,11 +48,12 @@ func _physics_process(delta):
 		velocity = velocity.move_toward(new_velocity, 2000)
 	elif playerspotted == false and player_dead == false:
 		velocity = Vector3.ZERO
-		get_tree().create_timer(1.0)
+		get_tree().create_timer(1.0).timeout
 	else:
 		pass
 	
 	move_and_slide()
+	
 	
 	#check for if enemy can hit player
 	if enemy_in_range == true:
@@ -59,6 +61,7 @@ func _physics_process(delta):
 		enemy_in_range = false
 	else:
 		pass
+	
 	
 
 func _on_vision_timer_timeout():
@@ -77,10 +80,13 @@ func _on_vision_timer_timeout():
 						playerspotted = true
 						$VisionRaycast.debug_shape_custom_color = Color(174, 0, 0)
 						print("Target spotted")
+						ANIMATIONPLAYER.stop()
 					else:
 						playerspotted = false
 						$VisionRaycast.debug_shape_custom_color = Color(0, 255, 0)
 						print("Target lost")
+						get_tree().create_timer(1.0).timeout
+						ANIMATIONPLAYER.play("enemyrotate")
 
 func update_target_location(target_location):
 	nav_agent.set_target_position(target_location)
@@ -95,3 +101,6 @@ func _on_attack_area_body_entered(body):
 
 func _on_player_player_death():
 	player_dead = true
+	
+func enemy_survey():
+	pass
