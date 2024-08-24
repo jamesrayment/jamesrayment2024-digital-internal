@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d23f0gp6mrbk0"]
+[gd_scene load_steps=28 format=3 uid="uid://d23f0gp6mrbk0"]
 
 [ext_resource type="Script" path="res://map.gd" id="1_33ege"]
 [ext_resource type="Script" path="res://Player.gd" id="1_bfrp1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cmg2edydvvbiv" path="res://KovaaK-Crosshair.png" id="4_wqp5w"]
 [ext_resource type="PackedScene" uid="uid://lfmxryqqwk5v" path="res://ObjectiveMarker.tscn" id="5_iuyvw"]
 [ext_resource type="PackedScene" uid="uid://bpj523gc7ifgh" path="res://enemy.tscn" id="7_ldurk"]
+[ext_resource type="PackedScene" uid="uid://bwtyjf6v2ykvc" path="res://physicsdoor.tscn" id="8_ktyjs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qcfni"]
 
@@ -362,6 +363,9 @@ use_collision = true
 [node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(23.0287, 0, 0, 0, 227.774, 0, 0, 0, 3.97166, -0.0653253, 118.157, -4.45118)
 use_collision = true
+
+[node name="Physicsdoor" parent="." instance=ExtResource("8_ktyjs")]
+transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, 5.34967, 1.084, 0)
 
 [connection signal="player_death" from="Player" to="." method="_on_player_player_death"]
 [connection signal="player_death" from="Player" to="enemy" method="_on_player_player_death"]
