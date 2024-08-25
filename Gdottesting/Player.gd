@@ -105,4 +105,5 @@ func _on_body_3d_area_entered(body):
 
 func _on_enemy_enemy_hit():
 	health -= 50
+	get_node("/root/Node3D/Player/CollisionShape3D/Neck/currenthealth").text = str(health)
 	print(health)
