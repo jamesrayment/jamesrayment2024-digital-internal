@@ -19,6 +19,8 @@ signal enemy_hit
 
 @export var ANIMATIONPLAYER : AnimationPlayer
 
+# identifies global scene for storing variables between scenes
+@onready var global = get_node("/root/Global")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -34,11 +36,9 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 	# Enemy is delted when health is equal or lesser than 0
 	if health <= 0:
+		global.money += 5
+		print("money=", global.money)
 		queue_free()
-	if player_dead == false:
-		var player = get_node("/root/Node3D/Player")
-	else:
-		pass
 	
 	if playerspotted == true and player_dead == false:
 		look_at(player.global_position)

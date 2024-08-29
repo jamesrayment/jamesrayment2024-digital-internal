@@ -24,16 +24,24 @@ var double_jump
 
 var _is_crouching : bool = false
 
+var save_path = "user://variable.save"
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
+@onready var save_nodes = get_tree().get_nodes_in_group("persist")
+
 func _ready():
+	load_data()
+	print("money=", global.money)
+	
 	for coin in coins_group:
 		total_coins += 1
-		print(total_coins)
 		
 	total_coins = len(coins_group)
+	
+	
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -75,13 +83,12 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
 	if health <= 0:
+		save()
 		emit_signal("player_death")
 		queue_free()
 
 	move_and_slide()
 
-	global.player_coins += 1
-	#print(global.player_coins)
 
 	#sprint mechanics
 	if Input.is_action_just_pressed("Shift"):
@@ -89,6 +96,8 @@ func _physics_process(delta):
 	elif Input.is_action_just_released("Shift"):
 		SPEED = 5.0
 
+	save()
+	
 func toggle_crouch():
 	if _is_crouching == true:
 		ANIMATIONPLAYER.play("crouch", -1, -crouch_speed, true)
@@ -107,3 +116,15 @@ func _on_enemy_enemy_hit():
 	health -= 50
 	get_node("/root/Node3D/Player/CollisionShape3D/Neck/currenthealth").text = str(health)
 	print(health)
+
+func save():
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_var(global.money)
+	
+
+func load_data():
+	if FileAccess.file_exists(save_path):
+		var file = FileAccess.open(save_path, FileAccess.READ)
+		global.money = file.get_var(global.money)
+	else:
+		print("no data found")
