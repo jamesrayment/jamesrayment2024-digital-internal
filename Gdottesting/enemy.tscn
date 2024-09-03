@@ -48,6 +48,19 @@ debug_shape_custom_color = Color(0.984314, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.289236, -1.05874)
 shape = SubResource("BoxShape3D_i4bab")
 
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405463, 0.540133)
+light_color = Color(0.785896, 0.0947076, 0.01922, 1)
+light_energy = 50.0
+spot_range = 12.05
+spot_angle = 24.0
+
+[node name="attack_delay" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="timeout" from="VisionTimer" to="." method="_on_vision_timer_timeout"]
 [connection signal="area_entered" from="Attack_area" to="." method="_on_attack_area_area_entered"]
 [connection signal="body_entered" from="Attack_area" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="Attack_area" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="attack_delay" to="." method="_on_attack_delay_timeout"]

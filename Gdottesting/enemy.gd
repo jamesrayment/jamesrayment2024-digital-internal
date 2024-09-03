@@ -56,11 +56,6 @@ func _physics_process(delta):
 	
 	
 	#check for if enemy can hit player
-	if enemy_in_range == true:
-		emit_signal("enemy_hit")
-		enemy_in_range = false
-	else:
-		pass
 	
 	
 
@@ -77,10 +72,11 @@ func _on_vision_timer_timeout():
 					var collider = $VisionRaycast.get_collider()
 					
 					if collider.is_in_group("player"):
+						if not playerspotted:
+							ANIMATIONPLAYER.play("RESET")
 						playerspotted = true
 						$VisionRaycast.debug_shape_custom_color = Color(174, 0, 0)
 						print("Target spotted")
-						ANIMATIONPLAYER.stop()
 					else:
 						playerspotted = false
 						$VisionRaycast.debug_shape_custom_color = Color(0, 255, 0)
@@ -95,8 +91,7 @@ func update_target_location(target_location):
 func _on_attack_area_body_entered(body):
 	if body.is_in_group("player"):
 		enemy_in_range = true
-	else:
-		enemy_in_range = false
+		$attack_delay.start()
 
 
 func _on_player_player_death():
@@ -104,3 +99,15 @@ func _on_player_player_death():
 	
 func enemy_survey():
 	pass
+
+
+func _on_attack_area_body_exited(body):
+	if body.is_in_group("player"):
+		enemy_in_range = false
+		$attack_delay.stop()
+
+
+func _on_attack_delay_timeout():
+	if enemy_in_range == true:
+		emit_signal("enemy_hit")
+		$attack_delay.start()

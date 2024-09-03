@@ -9,7 +9,7 @@ var health = 100
 signal player_death
 
 #crouching
-@export var ANIMATIONPLAYER : AnimationPlayer
+@onready var ANIMATIONPLAYER = $AnimationPlayer
 @export_range(5, 10, 0.1) var crouch_speed : float = 7.0
 
 @onready var pivot = get_node("/root/Node3D/Player/CollisionShape3D")
@@ -106,14 +106,9 @@ func toggle_crouch():
 	_is_crouching = !_is_crouching
 
 
-func _on_body_3d_area_entered(body):
-	if body.is_in_group("enemy"):
-		print(health)
-		health -= 25
-
-
 func _on_enemy_enemy_hit():
 	health -= 50
+	print("damage")
 	get_node("/root/Node3D/Player/CollisionShape3D/Neck/currenthealth").text = str(health)
 	print(health)
 
@@ -128,3 +123,9 @@ func load_data():
 		global.money = file.get_var(global.money)
 	else:
 		print("no data found")
+
+
+#func _on_area_3d_body_entered(body):
+	#if body.is_in_group("enemy"):
+		#health -= 25
+		#print(health)
