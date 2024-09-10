@@ -32,6 +32,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var save_nodes = get_tree().get_nodes_in_group("persist")
 
+var pause = false
+
 func _ready():
 	load_data()
 	print("money=", global.money)
@@ -56,8 +58,22 @@ func _unhandled_input(event):
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(+90))
 
 func _input(event):
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	if event.is_action_pressed("Crouch"):
 		toggle_crouch()
+	
+	if event.is_action_pressed("esc") and pause == false:
+		get_tree().paused = true
+		print("paused")
+		pause = true
+	elif event.is_action_pressed("esc") and pause == true:
+		get_tree().paused = false
+		print("unpaused")
+		pause = false
+	
+	if event.is_action_pressed("l"):
+		pass
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -97,6 +113,7 @@ func _physics_process(delta):
 		SPEED = 5.0
 
 	save()
+	
 	
 func toggle_crouch():
 	if _is_crouching == true:

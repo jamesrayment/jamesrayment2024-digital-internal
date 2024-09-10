@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cce628jqfsyu8"]
+
+[ext_resource type="Script" path="res://upgradescreen.gd" id="1_6h4t8"]
+[ext_resource type="Texture2D" uid="uid://cclussdoecjgc" path="res://icon.svg" id="2_7lusb"]
+
+[node name="Screen" type="Node2D"]
+script = ExtResource("1_6h4t8")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 269.0
+offset_top = 514.0
+offset_right = 277.0
+offset_bottom = 522.0
+scale = Vector2(12.419, 13.7433)
+
+[node name="progbar" type="TextureProgressBar" parent="."]
+offset_left = 238.0
+offset_top = 488.0
+offset_right = 302.0
+offset_bottom = 552.0
+scale = Vector2(1.30933, 3.97127)
+rounded = true
+fill_mode = 3
+texture_progress = ExtResource("2_7lusb")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(12.9846, 4.16753)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

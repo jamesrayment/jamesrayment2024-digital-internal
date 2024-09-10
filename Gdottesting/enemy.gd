@@ -76,10 +76,12 @@ func _on_vision_timer_timeout():
 							ANIMATIONPLAYER.play("RESET")
 						playerspotted = true
 						$VisionRaycast.debug_shape_custom_color = Color(174, 0, 0)
+						$SpotLight3D.set_color("c81805")
 						print("Target spotted")
 					else:
 						playerspotted = false
 						$VisionRaycast.debug_shape_custom_color = Color(0, 255, 0)
+						$SpotLight3D.set_color("00ec2d")
 						print("Target lost")
 						get_tree().create_timer(1.0).timeout
 						ANIMATIONPLAYER.play("enemyrotate")

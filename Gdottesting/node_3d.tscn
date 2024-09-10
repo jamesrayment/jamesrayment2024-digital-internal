@@ -18,9 +18,9 @@ sky_material = SubResource("ProceduralSkyMaterial_atjff")
 
 [sub_resource type="Environment" id="Environment_ss84d"]
 background_mode = 2
-background_energy_multiplier = 2.06
 sky = SubResource("Sky_14bn6")
 sky_rotation = Vector3(3.48787e-16, 3.48787e-16, 3.48787e-16)
+ambient_light_energy = 10.11
 
 [sub_resource type="Animation" id="Animation_ju2i7"]
 length = 0.001
@@ -61,8 +61,8 @@ _data = {
 }
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_h67vq"]
-vertices = PackedVector3Array(8.19618, 5.28772, 0.5503, 8.44618, 5.28772, 1.3003, 10.9462, 5.28772, 1.3003, 10.9462, 5.28772, -10.4497, -11.0538, 5.28772, -10.4497, -11.0538, 5.28772, 0.5503, 8.19618, 5.28772, 0.5503, 10.9462, 5.28772, -10.4497, 10.9462, 5.28772, 1.3003, 8.44618, 5.28772, 1.3003, 8.19618, 5.28772, 2.3003, 10.9462, 5.28772, 10.5503, 8.19618, 5.28772, 2.3003, -11.0538, 5.28772, 2.3003, -11.0538, 5.28772, 10.5503, 10.9462, 5.28772, 10.5503)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15)]
+vertices = PackedVector3Array(8.19618, 5.28772, -2.6997, 8.44618, 5.28772, -1.9497, 10.9462, 5.28772, -1.9497, 10.9462, 5.28772, -10.4497, -11.0538, 5.28772, -10.4497, -11.0538, 5.28772, -2.6997, 8.19618, 5.28772, -2.6997, 10.9462, 5.28772, -10.4497, 10.9462, 5.28772, 1.5503, 10.9462, 5.28772, -1.9497, 8.44618, 5.28772, -1.9497, 8.19618, 5.28772, -0.9497, 8.19618, 5.28772, 0.5503, 8.44618, 5.28772, 1.5503, 8.19618, 5.28772, -0.9497, -11.0538, 5.28772, -0.9497, -11.0538, 5.28772, 0.5503, 8.19618, 5.28772, 0.5503, 10.9462, 5.28772, 1.5503, 8.44618, 5.28772, 1.5503, 8.19618, 5.28772, 2.3003, 10.9462, 5.28772, 10.5503, 8.19618, 5.28772, 2.3003, -11.0538, 5.28772, 2.3003, -11.0538, 5.28772, 10.5503, 10.9462, 5.28772, 10.5503)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 10, 9), PackedInt32Array(13, 9, 8), PackedInt32Array(17, 16, 14), PackedInt32Array(14, 16, 15), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 21), PackedInt32Array(23, 22, 24), PackedInt32Array(24, 22, 25)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g0yss"]
 size = Vector3(23.6068, 7.04395, 21.5427)
@@ -149,10 +149,10 @@ mesh = SubResource("BoxMesh_o62do")
 material = SubResource("StandardMaterial3D_qlklt")
 
 [node name="Physicsdoor" parent="." instance=ExtResource("8_ktyjs")]
-transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, 5.34771, 1.09029, 0.418064)
+transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, 7.62131, 1.09029, 0.418064)
 
 [node name="Physicsdoor2" parent="." instance=ExtResource("9_nd7er")]
-transform = Transform3D(-4.37114e-08, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, -4.37114e-08, 5.35348, 1.07891, -0.822264)
+transform = Transform3D(-4.37114e-08, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, -4.37114e-08, 7.62708, 1.07891, -0.822264)
 
 [connection signal="player_death" from="Player" to="." method="_on_player_player_death"]
 [connection signal="enemy_hit" from="enemy" to="Player" method="_on_enemy_enemy_hit"]
