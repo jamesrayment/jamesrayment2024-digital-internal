@@ -34,6 +34,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var pause = false
 
+#headbob animplayer
+@onready var ANIMATIONPLAYER_headbob = $CollisionShape3D/Neck/Camera3D/AnimationPlayer
+
 func _ready():
 	load_data()
 	print("money=", global.money)
@@ -79,6 +82,7 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+		ANIMATIONPLAYER_headbob.pause()
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -105,11 +109,15 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+	if direction != Vector3():
+		ANIMATIONPLAYER_headbob.play("headbob")
 
 	#sprint mechanics
 	if Input.is_action_just_pressed("Shift"):
+		ANIMATIONPLAYER_headbob.speed_scale = 2
 		SPEED = 10.0
 	elif Input.is_action_just_released("Shift"):
+		ANIMATIONPLAYER_headbob.speed_scale = 1
 		SPEED = 5.0
 
 	save()
