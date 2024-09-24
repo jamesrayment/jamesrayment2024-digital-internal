@@ -1,34 +1,60 @@
 [gd_scene load_steps=3 format=3 uid="uid://cce628jqfsyu8"]
 
 [ext_resource type="Script" path="res://upgradescreen.gd" id="1_6h4t8"]
-[ext_resource type="Texture2D" uid="uid://cclussdoecjgc" path="res://icon.svg" id="2_7lusb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0ts1x"]
+font_size = 54
 
 [node name="Screen" type="Node2D"]
 script = ExtResource("1_6h4t8")
 
-[node name="Button" type="Button" parent="."]
-offset_left = 32.0
-offset_top = 514.0
-offset_right = 40.0
-offset_bottom = 522.0
-scale = Vector2(12.419, 13.7433)
-
-[node name="progbar" type="TextureProgressBar" parent="."]
-offset_left = 150.0
-offset_top = 533.0
-offset_right = 278.0
-offset_bottom = 661.0
-scale = Vector2(1.30933, 3.97127)
-rounded = true
-fill_mode = 3
-texture_progress = ExtResource("2_7lusb")
-tint_under = Color(1, 0.4, 1, 1)
-
 [node name="Label" type="Label" parent="."]
-offset_left = 515.0
-offset_top = 189.0
-offset_right = 525.0
-offset_bottom = 212.0
+offset_left = 157.0
+offset_top = 621.0
+offset_right = 167.0
+offset_bottom = 644.0
 scale = Vector2(12.9846, 4.16753)
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="Continue" type="Button" parent="."]
+offset_left = 1591.0
+offset_top = 85.0
+offset_right = 1921.0
+offset_bottom = 222.0
+
+[node name="Label" type="Label" parent="Continue"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 19.0
+offset_right = 291.0
+offset_bottom = 120.0
+text = "Continue"
+label_settings = SubResource("LabelSettings_0ts1x")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 58.229
+offset_top = 608.946
+offset_right = 72.229
+offset_bottom = 631.946
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 222.0
+offset_top = 259.0
+offset_right = 1582.0
+offset_bottom = 1004.0
+alignment = 1
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button3" to="." method="_on_button_2_pressed"]

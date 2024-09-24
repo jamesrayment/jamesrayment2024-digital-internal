@@ -1,0 +1,32 @@
+# Blender MTL File: 'Final.blend'
+# Material Count: 3
+
+newmtl Body.002
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Users\Brandon\Downloads\1Projects\Blender\Archive\Armor\Stryker\Stryker Body.psd
+
+newmtl Hand.003
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Users\Brandon\Downloads\1Projects\Blender\Archive\Armor\Hand.psd
+
+newmtl Head.002
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd C:\Users\Brandon\Downloads\1Projects\Blender\Archive\Armor\Stryker\Stryker Helmet.psd

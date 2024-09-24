@@ -38,6 +38,7 @@ var pause = false
 @onready var ANIMATIONPLAYER_headbob = $CollisionShape3D/Neck/Camera3D/AnimationPlayer
 
 func _ready():
+	print(global.money)
 	load_data()
 	print("money=", global.money)
 	
@@ -75,8 +76,11 @@ func _input(event):
 		print("unpaused")
 		pause = false
 	
-	if event.is_action_pressed("l"):
-		pass
+	if event.is_action_pressed("debug"):
+		global.money = 0
+		save()
+		load_data()
+		print("Global money reset! Money = ", global.money)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -138,6 +142,7 @@ func _on_enemy_enemy_hit():
 	print(health)
 
 func save():
+	print(global.money)
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	file.store_var(global.money)
 	
@@ -146,6 +151,7 @@ func load_data():
 	if FileAccess.file_exists(save_path):
 		var file = FileAccess.open(save_path, FileAccess.READ)
 		global.money = file.get_var(global.money)
+		print(global.money)
 	else:
 		print("no data found")
 

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c27ng5sc8oift"
+path="res://.godot/imported/Final.obj-a9a6d790f7f78089376bc19533bbd9ac.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Final.obj-a9a6d790f7f78089376bc19533bbd9ac.mesh"]
+
+source_file="res://textures/soldier/Publish/Final.obj"
+dest_files=["res://.godot/imported/Final.obj-a9a6d790f7f78089376bc19533bbd9ac.mesh", "res://.godot/imported/Final.obj-a9a6d790f7f78089376bc19533bbd9ac.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

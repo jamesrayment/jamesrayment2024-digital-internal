@@ -1,12 +1,13 @@
 extends Node3D
 
 @onready var player = $Player
+@onready var global = get_node("/root/Global")
 
 
 var player_dead = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	global.level = 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
