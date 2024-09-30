@@ -8,14 +8,10 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	get_node("Label").text = str("money=", global.money)
-	get_node("progbar").set_value(global.upgradelevel * 10)
-	get_node("progbar2").set_value(global.upgradelevel2 * 10)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	get_node("Label").text = str("money=", global.money)
-	get_node("progbar").set_value(global.upgradelevel * 10)
-	get_node("progbar2").set_value(global.upgradelevel2 * 10)
 
 func _on_button_pressed():
 	if global.money >= 50:

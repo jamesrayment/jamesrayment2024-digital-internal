@@ -38,23 +38,23 @@ offset_top = 608.946
 offset_right = 72.229
 offset_bottom = 631.946
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 222.0
-offset_top = 259.0
-offset_right = 1582.0
-offset_bottom = 1004.0
-alignment = 1
+[node name="Button3" type="Button" parent="."]
+offset_left = 717.0
+offset_right = 725.0
+offset_bottom = 936.0
 
-[node name="Button" type="Button" parent="HBoxContainer"]
-layout_mode = 2
+[node name="Button2" type="Button" parent="."]
+offset_left = 729.0
+offset_right = 737.0
+offset_bottom = 936.0
 
-[node name="Button2" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Button3" type="Button" parent="HBoxContainer"]
-layout_mode = 2
+[node name="Button" type="Button" parent="."]
+offset_left = 741.0
+offset_right = 749.0
+offset_bottom = 936.0
+scale = Vector2(47.3442, 0.119324)
 
 [connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="HBoxContainer/Button3" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

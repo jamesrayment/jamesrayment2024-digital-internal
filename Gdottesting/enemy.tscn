@@ -1,22 +1,33 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpj523gc7ifgh"]
+[gd_scene load_steps=13 format=3 uid="uid://bpj523gc7ifgh"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_8ugs7"]
 [ext_resource type="PackedScene" uid="uid://duuhgia6mpefg" path="res://cone.tscn" id="2_d2qua"]
 [ext_resource type="ArrayMesh" uid="uid://c27ng5sc8oift" path="res://textures/soldier/Publish/Final.obj" id="3_s2lde"]
+[ext_resource type="Texture2D" uid="uid://ckpkj1we1otft" path="res://textures/soldier/Publish/Textures/Stryker Body.png" id="4_2hyq6"]
+[ext_resource type="Texture2D" uid="uid://dnrgnj1co1s67" path="res://textures/soldier/Publish/Textures/Stryker Helmet.png" id="5_06478"]
+[ext_resource type="Texture2D" uid="uid://bdpd8rtfcnlnt" path="res://textures/soldier/Publish/Textures/Hand.png" id="6_qlpmm"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jre0a"]
 points = PackedVector3Array(-0.000195742, 1, -0.000195742, 0.194988, -1, -0.980814, -0.000195742, -1, -1, -0.195184, -1, -0.980814, -0.382733, -1, -0.924041, -0.555599, -1, -0.831637, -0.707126, -1, -0.707126, -0.831637, -1, -0.555599, -0.924041, -1, -0.382733, -0.980814, -1, -0.195184, -1, -1, -0.000195742, -0.980814, -1, 0.194988, -0.924041, -1, 0.382537, -0.831637, -1, 0.555403, -0.707126, -1, 0.70693, -0.555599, -1, 0.831441, -0.382733, -1, 0.923845, -0.195184, -1, 0.980619, -0.000195742, -1, 1, 0.194988, -1, 0.980619, 0.382537, -1, 0.923845, 0.555403, -1, 0.831441, 0.70693, -1, 0.70693, 0.831441, -1, 0.555403, 0.923845, -1, 0.382537, 0.980619, -1, 0.194988, 1, -1, -0.000195742, 0.980619, -1, -0.195184, 0.923845, -1, -0.382733, 0.831441, -1, -0.555599, 0.70693, -1, -0.707126, 0.555403, -1, -0.831637, 0.382537, -1, -0.924041)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i4bab"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_foevg"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_emhth"]
+albedo_texture = ExtResource("4_2hyq6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w54a6"]
+albedo_texture = ExtResource("5_06478")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3bh1m"]
+albedo_texture = ExtResource("6_qlpmm")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g0l8w"]
 
 [node name="enemy" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.279, 2.08165e-12)
 script = ExtResource("1_8ugs7")
 
 [node name="VisionCone" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.314035)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32317, 0.314035)
 
 [node name="Cone" parent="VisionCone" instance=ExtResource("2_d2qua")]
 transform = Transform3D(5, -3.33212e-30, 1.45652e-37, 0, -2.18557e-07, -5, 3.33212e-30, 5, -2.18557e-07, 0, 0.43987, -5.80482)
@@ -31,19 +42,21 @@ wait_time = 0.3
 autostart = true
 
 [node name="VisionRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32317, 0)
 target_position = Vector3(2.08165e-12, 2.08165e-12, -100)
 debug_shape_custom_color = Color(0.984314, 0, 0, 1)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." groups=["enemy"]]
 
 [node name="Attack_area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32317, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Attack_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.289236, -1.05874)
 shape = SubResource("BoxShape3D_i4bab")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.430583, -0.444819)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75375, -0.444819)
 light_color = Color(0, 0.92549, 0.176471, 1)
 light_energy = 1000.0
 shadow_enabled = true
@@ -55,12 +68,15 @@ wait_time = 2.0
 one_shot = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.252465, 8.80564e-17, -2.20712e-08, 8.80564e-17, 0.252465, -8.80564e-17, 2.20712e-08, -8.80564e-17, -0.252465, -0.0147095, -1.21192, -0.432706)
+transform = Transform3D(-0.252465, 8.80564e-17, -2.20712e-08, 8.80564e-17, 0.252465, -8.80564e-17, 2.20712e-08, -8.80564e-17, -0.252465, -0.0147095, 0.111247, -0.432706)
 mesh = ExtResource("3_s2lde")
+surface_material_override/0 = SubResource("StandardMaterial3D_emhth")
+surface_material_override/1 = SubResource("StandardMaterial3D_w54a6")
+surface_material_override/2 = SubResource("StandardMaterial3D_3bh1m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.26697, 0, 0, 0, 1.26697, 0, 0, 0, 1.26697, 0, 0, -0.414065)
-shape = SubResource("CapsuleShape3D_foevg")
+transform = Transform3D(1, 2.49612e-24, 1.79843e-15, -3.3058e-24, 1, 7.32792e-24, 9.74589e-16, 1.00401e-24, 1, 9.29241e-10, 1.19963, -0.39571)
+shape = SubResource("CapsuleShape3D_g0l8w")
 
 [connection signal="timeout" from="VisionTimer" to="." method="_on_vision_timer_timeout"]
 [connection signal="area_entered" from="Attack_area" to="." method="_on_attack_area_area_entered"]

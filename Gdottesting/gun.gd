@@ -18,6 +18,7 @@ var pistolmaxammo = 10
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ammo = 10
+	$Debris_particles.emitting = false
 
 func _input(event):
 	if event.is_action_pressed("Shoot") and reloading == false:
@@ -50,7 +51,12 @@ func _process(delta):
 	pass
 
 func _shoot():
-	ANIMATIONPLAYER.play("Shoot")
+	if $Debris_particles.emitting == false:
+		ANIMATIONPLAYER.play("Shoot")
+		$Debris_particles.emitting = true
+	else:
+		$Debris_particles.restart
+		_shoot()
 
 func _reload():
 	ANIMATIONPLAYER.play("Reload")

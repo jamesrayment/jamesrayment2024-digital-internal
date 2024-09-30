@@ -41,7 +41,12 @@ func _physics_process(delta):
 		queue_free()
 	
 	if playerspotted == true and player_dead == false:
+		if not is_on_floor():
+			velocity.y -= gravity * delta
+			print("floating")
+		
 		look_at(player.global_position)
+		rotation.x = clamp(rotation.x, 0, 0)
 		var current_location = global_transform.origin
 		print("current_location = ", current_location)
 		var next_location = nav_agent.get_next_path_position()
@@ -50,6 +55,7 @@ func _physics_process(delta):
 		print ("new_velocity = ", new_velocity)
 		velocity = velocity.move_toward(new_velocity, 2000)
 		print("velocity = ", velocity)
+		
 	elif playerspotted == false and player_dead == false:
 		velocity = Vector3.ZERO
 		get_tree().create_timer(1.0).timeout

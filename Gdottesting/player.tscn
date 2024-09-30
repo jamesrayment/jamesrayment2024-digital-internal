@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dj1rfiq6xo01g"]
+[gd_scene load_steps=20 format=3 uid="uid://dj1rfiq6xo01g"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_bsm43"]
 [ext_resource type="PackedScene" uid="uid://cttmlol7ryty6" path="res://guntextured.glb" id="2_4khux"]
@@ -27,6 +27,33 @@ tracks/0/keys = {
 _data = {
 "headbob": SubResource("Animation_cqxum")
 }
+
+[sub_resource type="Curve" id="Curve_36spe"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.497573, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_w2g6v"]
+curve = SubResource("Curve_36spe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pv42s"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 12.0
+initial_velocity_max = 14.0
+scale_min = 0.02
+scale_max = 0.05
+scale_curve = SubResource("CurveTexture_w2g6v")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q45a8"]
+albedo_color = Color(0.943474, 0.519929, 0.173265, 1)
+emission_enabled = true
+emission = Color(0.782404, 0.414, 0.0386131, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0m8ip"]
+material = SubResource("StandardMaterial3D_q45a8")
+top_radius = 0.1
+bottom_radius = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qypho"]
 
@@ -216,6 +243,17 @@ libraries = {
 transform = Transform3D(-0.0387203, 0.000366287, -0.00295487, 0.000375754, 0.0388326, -0.000110132, 0.00295369, -0.000138399, -0.0387218, 0.703, 0.0820007, -0.6)
 script = ExtResource("3_3m510")
 ANIMATIONPLAYER = NodePath("../../../AnimationPlayer")
+
+[node name="Debris_particles" type="GPUParticles3D" parent="CollisionShape3D/Neck/guntextured"]
+transform = Transform3D(3.72265, 9.56091e-09, -2.91142e-08, 3.08284e-08, 3.72265, -1.75775e-09, 2.80199e-08, -1.05811e-09, 3.72265, -0.832285, 7.29776, 11.8108)
+emitting = false
+amount = 24
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_pv42s")
+draw_pass_1 = SubResource("CylinderMesh_0m8ip")
 
 [node name="crosshair" type="TextureRect" parent="CollisionShape3D/Neck"]
 offset_left = 940.0
