@@ -28,7 +28,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var playerspotted = false
 
 func _ready():
-	ANIMATIONPLAYER.play("enemyrotate")
+		ANIMATIONPLAYER.play("global/enemyrotate")
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -83,7 +83,7 @@ func _on_vision_timer_timeout():
 					
 					if collider.is_in_group("player"):
 						if not playerspotted:
-							ANIMATIONPLAYER.play("RESET")
+							ANIMATIONPLAYER.play("global/RESET")
 						playerspotted = true
 						$VisionRaycast.debug_shape_custom_color = Color(174, 0, 0)
 						$SpotLight3D.set_color("c81805")
@@ -94,7 +94,7 @@ func _on_vision_timer_timeout():
 						$SpotLight3D.set_color("00ec2d")
 						print("Target lost")
 						get_tree().create_timer(1.0).timeout
-						ANIMATIONPLAYER.play("enemyrotate")
+						ANIMATIONPLAYER.play("global/enemyrotate")
 
 func update_target_location(target_location):
 	nav_agent.set_target_position(target_location)
