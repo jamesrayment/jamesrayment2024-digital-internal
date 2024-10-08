@@ -3,6 +3,8 @@ extends Node3D
 
 @export var ANIMATIONPLAYER : AnimationPlayer
 
+@onready var global = get_node("/root/Global")
+
 #damage
 var damage = 20
 
@@ -11,13 +13,14 @@ var reloading = false
 
 #ammo
 var ammo = 0
-var pistolmaxammo = 10
+var pistolmaxammo = 10 
 
 @onready var aimcast = get_node("/root/Node3D/Player/CollisionShape3D/Neck/Camera3D/Aimcast")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	ammo = 10
+	pistolmaxammo += (global.upgradelevel2)
+	ammo = pistolmaxammo
 	$Debris_particles.emitting = false
 
 func _input(event):
@@ -62,7 +65,7 @@ func _reload():
 	ANIMATIONPLAYER.play("Reload")
 	
 func reloadfinish():
-	ammo = 10
+	ammo = pistolmaxammo
 	print(ammo)
 	get_node("/root/Node3D/Player/CollisionShape3D/Neck/currentammo").text = str(ammo)
 	reloading = false

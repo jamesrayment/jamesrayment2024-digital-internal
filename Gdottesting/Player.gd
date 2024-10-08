@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-var SPEED = 5.0
+var SPEED = 5.0 
 const JUMP_VELOCITY = 4.5
 
 var health = 100
@@ -42,11 +42,11 @@ func _ready():
 	load_data()
 	print("money=", global.money)
 	
-	for coin in coins_group:
-		total_coins += 1
-		
-	total_coins = len(coins_group)
+	SPEED += (global.upgradelevel * 0.5)
 	
+	
+	health += (global.upgradelevel3 * 10)
+	get_node("/root/Node3D/Player/CollisionShape3D/Neck/currenthealth").text = str(health)
 	
 
 func _unhandled_input(event):

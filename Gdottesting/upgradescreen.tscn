@@ -39,22 +39,29 @@ offset_right = 72.229
 offset_bottom = 631.946
 
 [node name="Button3" type="Button" parent="."]
-offset_left = 717.0
-offset_right = 725.0
-offset_bottom = 936.0
+offset_left = 338.0
+offset_top = 430.0
+offset_right = 714.0
+offset_bottom = 506.0
+text = "Health
+"
 
 [node name="Button2" type="Button" parent="."]
-offset_left = 729.0
-offset_right = 737.0
-offset_bottom = 936.0
+offset_left = 895.0
+offset_top = 437.0
+offset_right = 1294.0
+offset_bottom = 511.0
+text = "Ammo"
 
 [node name="Button" type="Button" parent="."]
-offset_left = 741.0
-offset_right = 749.0
-offset_bottom = 936.0
-scale = Vector2(47.3442, 0.119324)
+offset_left = 598.0
+offset_top = 295.0
+offset_right = 1005.0
+offset_bottom = 376.0
+text = "Speed
+"
 
 [connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="Button3" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
