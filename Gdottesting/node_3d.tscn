@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://d23f0gp6mrbk0"]
+[gd_scene load_steps=22 format=3 uid="uid://d23f0gp6mrbk0"]
 
 [ext_resource type="Script" path="res://map.gd" id="1_33ege"]
 [ext_resource type="PackedScene" uid="uid://dj1rfiq6xo01g" path="res://player.tscn" id="2_f3edr"]
+[ext_resource type="Texture2D" uid="uid://uhtcrlqqqhvn" path="res://textures/Deep Dusk Equirect.png" id="3_07bcl"]
 [ext_resource type="PackedScene" uid="uid://lfmxryqqwk5v" path="res://ObjectiveMarker.tscn" id="5_iuyvw"]
 [ext_resource type="Texture2D" uid="uid://c383q35gbv4d0" path="res://textures/scuffed_cement_ao_4k.jpg" id="7_hbtvj"]
 [ext_resource type="PackedScene" uid="uid://bpj523gc7ifgh" path="res://enemy.tscn" id="7_ldurk"]
@@ -11,16 +12,18 @@
 [ext_resource type="Texture2D" uid="uid://tla84osnv0v" path="res://textures/scuffed_cement_arm_4k.jpg" id="9_xumle"]
 [ext_resource type="Texture2D" uid="uid://cxdn1jv5433m4" path="res://textures/scuffed_cement_disp_4k.png" id="10_u16kr"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_atjff"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_835ij"]
+panorama = ExtResource("3_07bcl")
 
 [sub_resource type="Sky" id="Sky_14bn6"]
-sky_material = SubResource("ProceduralSkyMaterial_atjff")
+sky_material = SubResource("PanoramaSkyMaterial_835ij")
 
 [sub_resource type="Environment" id="Environment_ss84d"]
 background_mode = 2
 sky = SubResource("Sky_14bn6")
 sky_rotation = Vector3(3.48787e-16, 3.48787e-16, 3.48787e-16)
-ambient_light_energy = 10.11
+ambient_light_color = Color(0.6697, 0.233928, 0.0152584, 1)
+ambient_light_energy = 16.0
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_h67vq"]
 vertices = PackedVector3Array(8.19618, 5.28772, -2.6997, 8.44618, 5.28772, -1.9497, 10.9462, 5.28772, -1.9497, 10.9462, 5.28772, -10.4497, -11.0538, 5.28772, -10.4497, -11.0538, 5.28772, -2.6997, 8.19618, 5.28772, -2.6997, 10.9462, 5.28772, -10.4497, 10.9462, 5.28772, 1.5503, 10.9462, 5.28772, -1.9497, 8.44618, 5.28772, -1.9497, 8.19618, 5.28772, -0.9497, 8.19618, 5.28772, 0.5503, 8.44618, 5.28772, 1.5503, 8.19618, 5.28772, -0.9497, -11.0538, 5.28772, -0.9497, -11.0538, 5.28772, 0.5503, 8.19618, 5.28772, 0.5503, 10.9462, 5.28772, 1.5503, 8.44618, 5.28772, 1.5503, 8.19618, 5.28772, 2.3003, 10.9462, 5.28772, 10.5503, 8.19618, 5.28772, 2.3003, -11.0538, 5.28772, 2.3003, -11.0538, 5.28772, 10.5503, 10.9462, 5.28772, 10.5503)

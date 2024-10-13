@@ -34,6 +34,8 @@ func _on_button_2_pressed():
 func _on_continue_pressed():
 	if global.level == 1:
 		get_tree().change_scene_to_file.bind("res://level2.tscn").call_deferred()
+	if global.level == 2:
+		get_tree().change_scene_to_file.bind("res://level3.tscn").call_deferred()
 
 
 func _on_button_3_pressed():

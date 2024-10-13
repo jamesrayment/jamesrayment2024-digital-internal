@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://7bvj1krewo3a"]
+[gd_scene load_steps=19 format=3 uid="uid://7bvj1krewo3a"]
 
 [ext_resource type="Script" path="res://level2.gd" id="1_uukf1"]
 [ext_resource type="PackedScene" uid="uid://dj1rfiq6xo01g" path="res://player.tscn" id="2_7d0b7"]
 [ext_resource type="ArrayMesh" uid="uid://n0t4llcy27c8" path="res://level2mesh.obj" id="2_ol32b"]
 [ext_resource type="PackedScene" uid="uid://lfmxryqqwk5v" path="res://ObjectiveMarker.tscn" id="3_0ap7t"]
+[ext_resource type="Texture2D" uid="uid://c1obq2xv2e10e" path="res://textures/AllSky_Overcast4_Low.png" id="3_s28mv"]
 [ext_resource type="PackedScene" uid="uid://bwtyjf6v2ykvc" path="res://physicsdoor.tscn" id="4_6pc40"]
 [ext_resource type="Texture2D" uid="uid://cwquhhxv5xebn" path="res://textures/rubber_tiles_4k/textures/rubber_tiles_ao_4k.jpg" id="4_y0dx3"]
 [ext_resource type="PackedScene" uid="uid://cfqlrdjvoixb7" path="res://physicsdooropposite.tscn" id="5_3qvog"]
@@ -12,10 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://d3rkof6uprfx" path="res://textures/rubber_tiles_4k/textures/rubber_tiles_disp_4k.png" id="7_8jf1a"]
 [ext_resource type="PackedScene" uid="uid://bpj523gc7ifgh" path="res://enemy.tscn" id="10_sgnx2"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cib8j"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ps2aq"]
+panorama = ExtResource("3_s28mv")
 
 [sub_resource type="Sky" id="Sky_7c34h"]
-sky_material = SubResource("ProceduralSkyMaterial_cib8j")
+sky_material = SubResource("PanoramaSkyMaterial_ps2aq")
 
 [sub_resource type="Environment" id="Environment_lt7u6"]
 background_mode = 2
