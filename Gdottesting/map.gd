@@ -13,7 +13,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if player_dead == false:
-		get_tree().call_group("enemy", "update_target_location", player.global_transform.origin)
+		get_tree().call_group("enemy", "update_target_location", player.global_transform.origin) 
 	else:
 		return
 

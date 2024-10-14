@@ -16,6 +16,7 @@ var enemy_in_range = false
 var player_dead = false
 
 signal enemy_hit
+signal enemy_death
 
 @export var ANIMATIONPLAYER : AnimationPlayer
 
@@ -36,9 +37,9 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 	# Enemy is delted when health is equal or lesser than 0
 	if health <= 0:
+		emit_signal("enemy_death")
 		global.money += 5
 		print("money=", global.money)
-		queue_free()
 	
 	if playerspotted == true and player_dead == false:
 		if not is_on_floor():
@@ -123,3 +124,15 @@ func _on_attack_delay_timeout():
 	if enemy_in_range == true:
 		emit_signal("enemy_hit")
 		$attack_delay.start()
+
+
+
+
+func _on_enemy_death():
+	velocity = Vector3.ZERO
+	get_node("animationsfolder/AnimationPlayer").play("death")
+	
+
+
+func _on_animationsfolder_enemy_death_anim():
+	queue_free()

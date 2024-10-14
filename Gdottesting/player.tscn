@@ -48,7 +48,7 @@ scale_curve = SubResource("CurveTexture_w2g6v")
 albedo_color = Color(0.943474, 0.519929, 0.173265, 1)
 emission_enabled = true
 emission = Color(0.782404, 0.414, 0.0386131, 1)
-emission_energy_multiplier = 2.0
+emission_energy_multiplier = 16.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0m8ip"]
 material = SubResource("StandardMaterial3D_q45a8")
