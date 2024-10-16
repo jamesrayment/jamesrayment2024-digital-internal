@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dj1rfiq6xo01g" path="res://player.tscn" id="2_7d0b7"]
 [ext_resource type="ArrayMesh" uid="uid://n0t4llcy27c8" path="res://level2mesh.obj" id="2_ol32b"]
 [ext_resource type="PackedScene" uid="uid://lfmxryqqwk5v" path="res://ObjectiveMarker.tscn" id="3_0ap7t"]
-[ext_resource type="Texture2D" uid="uid://c1obq2xv2e10e" path="res://textures/AllSky_Overcast4_Low.png" id="3_s28mv"]
+[ext_resource type="Texture2D" uid="uid://dl8i0dqv8lhbp" path="res://textures/Sky_Day_BlueSky_Equirect.png" id="3_r38g1"]
 [ext_resource type="PackedScene" uid="uid://bwtyjf6v2ykvc" path="res://physicsdoor.tscn" id="4_6pc40"]
 [ext_resource type="Texture2D" uid="uid://cwquhhxv5xebn" path="res://textures/rubber_tiles_4k/textures/rubber_tiles_ao_4k.jpg" id="4_y0dx3"]
 [ext_resource type="PackedScene" uid="uid://cfqlrdjvoixb7" path="res://physicsdooropposite.tscn" id="5_3qvog"]
@@ -14,10 +14,12 @@
 [ext_resource type="PackedScene" uid="uid://bpj523gc7ifgh" path="res://enemy.tscn" id="10_sgnx2"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ps2aq"]
-panorama = ExtResource("3_s28mv")
+panorama = ExtResource("3_r38g1")
+filter = false
 
 [sub_resource type="Sky" id="Sky_7c34h"]
 sky_material = SubResource("PanoramaSkyMaterial_ps2aq")
+radiance_size = 2
 
 [sub_resource type="Environment" id="Environment_lt7u6"]
 background_mode = 2

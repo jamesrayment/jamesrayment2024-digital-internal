@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-const SPEED = 2.0
+const SPEED = 5.0
 const JUMP_VELOCITY = 10
 
 #enemy health
@@ -30,6 +30,7 @@ var playerspotted = false
 
 func _ready():
 		ANIMATIONPLAYER.play("global/enemyrotate")
+		get_node("animationsfolder/AnimationPlayer").play("breath idle")
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -38,13 +39,13 @@ func _physics_process(delta):
 	# Enemy is delted when health is equal or lesser than 0
 	if health <= 0:
 		emit_signal("enemy_death")
-		global.money += 5
-		print("money=", global.money)
+		velocity = Vector3.ZERO
 	
 	if playerspotted == true and player_dead == false:
 		if not is_on_floor():
 			velocity.y -= gravity * delta
 			print("floating")
+		
 		
 		look_at(player.global_position)
 		rotation.x = clamp(rotation.x, 0, 0)
@@ -74,10 +75,11 @@ func _on_vision_timer_timeout():
 	var overlaps = $VisionCone.get_overlapping_bodies()
 	if overlaps.size() > 0:
 		for overlap in overlaps:
-			if overlap.is_in_group("player"):
+			if overlap.is_in_group("player") and health > 0:
 				var playerposition = overlap.global_transform.origin
 				$VisionRaycast.look_at(playerposition, Vector3.UP)
 				$VisionRaycast.force_raycast_update()
+				get_node("animationsfolder/AnimationPlayer").play("run")
 				
 				if $VisionRaycast.is_colliding():
 					var collider = $VisionRaycast.get_collider()
@@ -96,6 +98,7 @@ func _on_vision_timer_timeout():
 						print("Target lost")
 						get_tree().create_timer(1.0).timeout
 						ANIMATIONPLAYER.play("global/enemyrotate")
+						get_node("animationsfolder/AnimationPlayer").play("breath idle")
 
 func update_target_location(target_location):
 	nav_agent.set_target_position(target_location)
@@ -109,9 +112,7 @@ func _on_attack_area_body_entered(body):
 
 func _on_player_player_death():
 	player_dead = true
-	
-func enemy_survey():
-	pass
+
 
 
 func _on_attack_area_body_exited(body):
@@ -123,16 +124,19 @@ func _on_attack_area_body_exited(body):
 func _on_attack_delay_timeout():
 	if enemy_in_range == true:
 		emit_signal("enemy_hit")
+		get_node("animationsfolder/AnimationPlayer").play("attack")
 		$attack_delay.start()
 
 
 
 
 func _on_enemy_death():
-	velocity = Vector3.ZERO
 	get_node("animationsfolder/AnimationPlayer").play("death")
+	
 	
 
 
 func _on_animationsfolder_enemy_death_anim():
 	queue_free()
+	global.money += 5
+	print("money=", global.money)
