@@ -14,6 +14,7 @@ var run_speed = 1
 var enemy_in_range = false
 
 var player_dead = false
+var enemy_dead = false
 
 signal enemy_hit
 signal enemy_death
@@ -75,7 +76,7 @@ func _on_vision_timer_timeout():
 	var overlaps = $VisionCone.get_overlapping_bodies()
 	if overlaps.size() > 0:
 		for overlap in overlaps:
-			if overlap.is_in_group("player") and health > 0:
+			if overlap.is_in_group("player") and health > 0 and enemy_in_range == false:
 				var playerposition = overlap.global_transform.origin
 				$VisionRaycast.look_at(playerposition, Vector3.UP)
 				$VisionRaycast.force_raycast_update()
@@ -123,7 +124,6 @@ func _on_attack_area_body_exited(body):
 
 func _on_attack_delay_timeout():
 	if enemy_in_range == true:
-		emit_signal("enemy_hit")
 		get_node("animationsfolder/AnimationPlayer").play("attack")
 		$attack_delay.start()
 
@@ -131,6 +131,7 @@ func _on_attack_delay_timeout():
 
 
 func _on_enemy_death():
+	enemy_dead = true
 	get_node("animationsfolder/AnimationPlayer").play("death")
 	
 	
@@ -140,3 +141,7 @@ func _on_animationsfolder_enemy_death_anim():
 	queue_free()
 	global.money += 5
 	print("money=", global.money)
+
+
+func _on_animationsfolder_enemy_hit():
+	emit_signal("enemy_hit")

@@ -83,7 +83,7 @@ environment = SubResource("Environment_ss84d")
 [node name="objectivemarker" parent="." instance=ExtResource("5_iuyvw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.831279, 1.25784, 9.45989)
 
-[node name="enemy" parent="." groups=["enemy"] instance=ExtResource("7_ldurk")]
+[node name="enemy" parent="." instance=ExtResource("7_ldurk")]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 9.982, 2.08165e-12, 9.415)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]

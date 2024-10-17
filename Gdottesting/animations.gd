@@ -1,6 +1,7 @@
 extends Node3D
 
 signal enemy_death_anim
+signal enemy_hit
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,3 +14,6 @@ func _process(delta):
 
 func death_finish():
 	emit_signal("enemy_death_anim")
+
+func enemy_attack():
+	emit_signal("enemy_hit")

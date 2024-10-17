@@ -25,7 +25,7 @@ albedo_texture = ExtResource("6_qlpmm")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g0l8w"]
 
-[node name="enemy" type="CharacterBody3D" node_paths=PackedStringArray("ANIMATIONPLAYER")]
+[node name="enemy" type="CharacterBody3D" node_paths=PackedStringArray("ANIMATIONPLAYER") groups=["enemy"]]
 transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 0, 0)
 script = ExtResource("1_8ugs7")
 ANIMATIONPLAYER = NodePath("AnimationPlayer")
@@ -70,7 +70,7 @@ spot_range = 12.05
 spot_angle = 24.0
 
 [node name="attack_delay" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 0.1
 one_shot = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -100,3 +100,4 @@ transform = Transform3D(-0.45, 1.56954e-16, -6.79481e-08, 1.56954e-16, 0.45, -1.
 [connection signal="body_exited" from="Attack_area" to="." method="_on_attack_area_body_exited"]
 [connection signal="timeout" from="attack_delay" to="." method="_on_attack_delay_timeout"]
 [connection signal="enemy_death_anim" from="animationsfolder" to="." method="_on_animationsfolder_enemy_death_anim"]
+[connection signal="enemy_hit" from="animationsfolder" to="." method="_on_animationsfolder_enemy_hit"]
