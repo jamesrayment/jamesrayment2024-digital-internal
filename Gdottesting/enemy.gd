@@ -47,7 +47,6 @@ func _physics_process(delta):
 			velocity.y -= gravity * delta
 			print("floating")
 		
-		
 		look_at(player.global_position)
 		rotation.x = clamp(rotation.x, 0, 0)
 		var current_location = global_transform.origin
@@ -123,7 +122,7 @@ func _on_attack_area_body_exited(body):
 
 
 func _on_attack_delay_timeout():
-	if enemy_in_range == true:
+	if enemy_in_range == true and enemy_dead == false:
 		get_node("animationsfolder/AnimationPlayer").play("attack")
 		$attack_delay.start()
 

@@ -24,7 +24,6 @@ var double_jump
 
 var _is_crouching : bool = false
 
-var save_path = "user://variable.save"
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -39,7 +38,7 @@ var pause = false
 
 func _ready():
 	print(global.money)
-	load_data()
+	global.load_data()
 	print("money=", global.money)
 	
 	SPEED += (global.upgradelevel * 0.5)
@@ -47,7 +46,7 @@ func _ready():
 	
 	health += (global.upgradelevel3 * 10)
 	get_node("/root/Node3D/Player/CollisionShape3D/Neck/currenthealth").text = str(health)
-	
+	get_node("/root/Node3D/Player/CollisionShape3D/Neck/currentmoney").text = str("Money = ", global.money)
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -78,9 +77,12 @@ func _input(event):
 	
 	if event.is_action_pressed("debug"):
 		global.money = 0
-		save()
-		load_data()
-		print("Global money reset! Money = ", global.money)
+		global.upgradelevel = 0
+		global.upgradelevel2 = 0
+		global.upgradelevel3 = 0
+		global.save()
+		global.load_data()
+		get_node("/root/Node3D/Player/CollisionShape3D/Neck/currentmoney").text = str("Global money reset! Money = ", global.money)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -107,7 +109,7 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
 	if health <= 0:
-		save()
+		global.save()
 		emit_signal("player_death")
 		queue_free()
 
@@ -124,7 +126,10 @@ func _physics_process(delta):
 		ANIMATIONPLAYER_headbob.speed_scale = 1
 		SPEED = 5.0
 
-	save()
+	global.save()
+
+	
+	get_node("/root/Node3D/Player/CollisionShape3D/Neck/currentmoney").text = str("Money = ", global.money)
 	
 	
 func toggle_crouch():
@@ -141,22 +146,17 @@ func _on_enemy_enemy_hit():
 	get_node("/root/Node3D/Player/CollisionShape3D/Neck/currenthealth").text = str(health)
 	print(health)
 
-func save():
-	print(global.money)
-	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	file.store_var(global.money)
-	
 
-func load_data():
-	if FileAccess.file_exists(save_path):
-		var file = FileAccess.open(save_path, FileAccess.READ)
-		global.money = file.get_var(global.money)
-		print(global.money)
-	else:
-		print("no data found")
 
 
 #func _on_area_3d_body_entered(body):
 	#if body.is_in_group("enemy"):
 		#health -= 25
 		#print(health)
+
+
+func _on_player_death():
+	if global.money >= 10:
+		global.money -= 10
+	else:
+		global.money = 0

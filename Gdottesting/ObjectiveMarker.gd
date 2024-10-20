@@ -16,7 +16,7 @@ func _process(delta):
 func _on_body_entered(body):
 	if body.is_in_group("player"):
 		global.money += 10
-		get_node("/root/Node3D/Player").save()
+		get_node("/root/Node3D/Player").global.save()
 		print("objective reached!")
 		get_tree().create_timer(1.0)
 		upgrade_scene.emit()

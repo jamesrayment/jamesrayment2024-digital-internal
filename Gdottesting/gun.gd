@@ -19,8 +19,10 @@ var pistolmaxammo = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	global.load_data()
 	pistolmaxammo += (global.upgradelevel2)
 	ammo = pistolmaxammo
+	get_node("/root/Node3D/Player/CollisionShape3D/Neck/currentammo").text = str(ammo)
 	$Debris_particles.emitting = false
 
 func _input(event):

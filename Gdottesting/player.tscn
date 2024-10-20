@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dj1rfiq6xo01g"]
+[gd_scene load_steps=21 format=3 uid="uid://dj1rfiq6xo01g"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_bsm43"]
 [ext_resource type="PackedScene" uid="uid://cttmlol7ryty6" path="res://guntextured.glb" id="2_4khux"]
@@ -56,6 +56,10 @@ top_radius = 0.1
 bottom_radius = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qypho"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r6fix"]
+font_size = 13
+font_color = Color(0.87451, 0.0431373, 0.0666667, 1)
 
 [sub_resource type="Animation" id="Animation_1iv58"]
 length = 0.001
@@ -288,6 +292,20 @@ text = "100
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="currentmoney" type="Label" parent="CollisionShape3D/Neck"]
+material = SubResource("ShaderMaterial_qypho")
+offset_left = 1424.0
+offset_top = 5.0
+offset_right = 1522.0
+offset_bottom = 28.0
+scale = Vector2(5, 5)
+theme_override_colors/font_color = Color(0.87451, 0.0431373, 0.0666667, 1)
+text = "Money = 
+"
+label_settings = SubResource("LabelSettings_r6fix")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_2ug4j")
@@ -298,4 +316,5 @@ libraries = {
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("CapsuleShape3D_odbgj")
 
+[connection signal="player_death" from="." to="." method="_on_player_death"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
