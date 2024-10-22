@@ -18,8 +18,6 @@ var sensitivity = 0.01
 
 @onready var global = get_node("/root/Global")
 
-@onready var coins_group = get_tree().get_nodes_in_group("coins")
-var total_coins = 0
 var double_jump
 
 var _is_crouching : bool = false
@@ -145,14 +143,6 @@ func _on_enemy_enemy_hit():
 	print("damage")
 	get_node("/root/Node3D/Player/CollisionShape3D/Neck/currenthealth").text = str(health)
 	print(health)
-
-
-
-
-#func _on_area_3d_body_entered(body):
-	#if body.is_in_group("enemy"):
-		#health -= 25
-		#print(health)
 
 
 func _on_player_death():

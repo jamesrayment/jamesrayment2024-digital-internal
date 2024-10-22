@@ -25,6 +25,7 @@ func _ready():
 	get_node("/root/Node3D/Player/CollisionShape3D/Neck/currentammo").text = str(ammo)
 	$Debris_particles.emitting = false
 
+# Code for shooting + reloading
 func _input(event):
 	if event.is_action_pressed("Shoot") and reloading == false:
 		if ammo > 0:

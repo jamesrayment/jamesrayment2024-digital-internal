@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2ym18yihb12t"]
+
+[ext_resource type="Script" path="res://death_screen.gd" id="1_r6tgb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p3nq4"]
+font_size = 100
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_r6tgb")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1930.0
+offset_bottom = 331.0
+text = "YOU DIED!
+"
+label_settings = SubResource("LabelSettings_p3nq4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 622.0
+offset_top = 425.0
+offset_right = 1368.0
+offset_bottom = 566.0
+text = "Restart"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 633.0
+offset_top = 595.0
+offset_right = 1379.0
+offset_bottom = 736.0
+text = "Quit"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

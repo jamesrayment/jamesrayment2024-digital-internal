@@ -12,8 +12,10 @@ func _ready():
 func _process(delta):
 	pass
 
+# When animation finishes, a signal is emitted for the enemy's death
 func death_finish():
 	emit_signal("enemy_death_anim")
 
+# Signal for enemy attacking the playert
 func enemy_attack():
 	emit_signal("enemy_hit")

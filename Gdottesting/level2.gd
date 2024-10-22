@@ -20,4 +20,4 @@ func _process(delta):
 
 func _on_player_player_death():
 	player_dead = true
-	get_tree().quit()
+	get_tree().change_scene_to_file.bind("res://death_screen.tscn").call_deferred()

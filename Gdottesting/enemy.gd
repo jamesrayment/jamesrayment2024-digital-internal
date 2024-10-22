@@ -13,6 +13,7 @@ var run_speed = 1
 
 var enemy_in_range = false
 
+# Variables for checking if player and enemy are dead
 var player_dead = false
 var enemy_dead = false
 
@@ -30,23 +31,27 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var playerspotted = false
 
 func _ready():
+		# Plays basic enemy rotation and idle animations on enetering the scene
 		ANIMATIONPLAYER.play("global/enemyrotate")
 		get_node("animationsfolder/AnimationPlayer").play("breath idle")
 
 func _physics_process(delta):
-	# Add the gravity.
+	# Adds the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	# Enemy is delted when health is equal or lesser than 0
+	
+	# Enemy is deleted when health is equal or lesser than 0
 	if health <= 0:
 		emit_signal("enemy_death")
 		velocity = Vector3.ZERO
 	
+	# Check for if the player is spotted and is not dead
 	if playerspotted == true and player_dead == false:
 		if not is_on_floor():
 			velocity.y -= gravity * delta
 			print("floating")
 		
+		# Looks and moves toward the player 
 		look_at(player.global_position)
 		rotation.x = clamp(rotation.x, 0, 0)
 		var current_location = global_transform.origin
@@ -58,6 +63,7 @@ func _physics_process(delta):
 		velocity = velocity.move_toward(new_velocity, 2000)
 		print("velocity = ", velocity)
 		
+	# If play is not spotted and not dead, the enemy stops moving
 	elif playerspotted == false and player_dead == false:
 		velocity = Vector3.ZERO
 		get_tree().create_timer(1.0).timeout
@@ -70,7 +76,7 @@ func _physics_process(delta):
 	#check for if enemy can hit player
 	
 	
-
+# Code for when the vision timer times out and checks if player is within visionn cone
 func _on_vision_timer_timeout():
 	var overlaps = $VisionCone.get_overlapping_bodies()
 	if overlaps.size() > 0:
@@ -100,10 +106,11 @@ func _on_vision_timer_timeout():
 						ANIMATIONPLAYER.play("global/enemyrotate")
 						get_node("animationsfolder/AnimationPlayer").play("breath idle")
 
+# Updates destination 
 func update_target_location(target_location):
 	nav_agent.set_target_position(target_location)
 
-
+# 
 func _on_attack_area_body_entered(body):
 	if body.is_in_group("player"):
 		enemy_in_range = true

@@ -48,10 +48,9 @@ autostart = true
 [node name="VisionRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32317, 0)
 target_position = Vector3(2.08165e-12, 2.08165e-12, -100)
-debug_shape_custom_color = Color(0.984314, 0, 0, 1)
+debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." groups=["enemy"]]
-debug_enabled = true
 
 [node name="Attack_area" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32317, 0)

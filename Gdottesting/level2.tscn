@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://7bvj1krewo3a"]
+[gd_scene load_steps=16 format=3 uid="uid://7bvj1krewo3a"]
 
 [ext_resource type="Script" path="res://level2.gd" id="1_uukf1"]
 [ext_resource type="PackedScene" uid="uid://dj1rfiq6xo01g" path="res://player.tscn" id="2_7d0b7"]
@@ -8,8 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bwtyjf6v2ykvc" path="res://physicsdoor.tscn" id="4_6pc40"]
 [ext_resource type="Texture2D" uid="uid://cwquhhxv5xebn" path="res://textures/rubber_tiles_4k/textures/rubber_tiles_ao_4k.jpg" id="4_y0dx3"]
 [ext_resource type="PackedScene" uid="uid://cfqlrdjvoixb7" path="res://physicsdooropposite.tscn" id="5_3qvog"]
-[ext_resource type="Texture2D" uid="uid://drl2jecbahdom" path="res://textures/rubber_tiles_4k/textures/rubber_tiles_arm_4k.jpg" id="5_kltf4"]
-[ext_resource type="Texture2D" uid="uid://d3rkof6uprfx" path="res://textures/rubber_tiles_4k/textures/rubber_tiles_disp_4k.png" id="7_8jf1a"]
 [ext_resource type="PackedScene" uid="uid://bpj523gc7ifgh" path="res://enemy.tscn" id="10_sgnx2"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ps2aq"]
@@ -35,12 +33,9 @@ data = PackedVector3Array(-3.4308, 0.2032, 5.929, -3.4308, 0.2032, 5.9283, -3.43
 albedo_color = Color(0.510614, 0.515805, 0.502196, 1)
 albedo_texture = ExtResource("4_y0dx3")
 metallic_specular = 0.74
-roughness_texture = ExtResource("7_8jf1a")
 normal_enabled = true
-normal_texture = ExtResource("5_kltf4")
 
 [node name="Node3D" type="Node3D"]
-transform = Transform3D(0.827098, 0, 0, 0, 0.827098, 0, 0, 0, 0.827098, 0, 0, 0)
 script = ExtResource("1_uukf1")
 
 [node name="Player" parent="." instance=ExtResource("2_7d0b7")]
