@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d23f0gp6mrbk0"]
+[gd_scene load_steps=29 format=3 uid="uid://d23f0gp6mrbk0"]
 
 [ext_resource type="Script" path="res://map.gd" id="1_d7idw"]
 [ext_resource type="PackedScene" uid="uid://dj1rfiq6xo01g" path="res://player.tscn" id="2_gi7i2"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bwtyjf6v2ykvc" path="res://physicsdoor.tscn" id="10_qd2mn"]
 [ext_resource type="PackedScene" uid="uid://cfqlrdjvoixb7" path="res://physicsdooropposite.tscn" id="11_3k6wy"]
 [ext_resource type="ArrayMesh" uid="uid://cqp58tqfo7ogw" path="res://level1mapborder.obj" id="12_xxkm6"]
+[ext_resource type="PackedScene" uid="uid://dm61iqrqakwd4" path="res://instructionscreen.tscn" id="13_iue6h"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_835ij"]
 panorama = ExtResource("3_3icdh")
@@ -165,6 +166,8 @@ shape = SubResource("ConcavePolygonShape3D_5tpop")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
 shape = SubResource("ConvexPolygonShape3D_i4icc")
 disabled = true
+
+[node name="Node2D" parent="." instance=ExtResource("13_iue6h")]
 
 [connection signal="player_death" from="Player" to="." method="_on_player_player_death"]
 [connection signal="enemy_hit" from="enemy" to="Player" method="_on_enemy_enemy_hit"]

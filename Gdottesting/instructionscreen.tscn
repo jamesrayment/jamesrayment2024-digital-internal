@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm61iqrqakwd4"]
+
+[ext_resource type="Script" path="res://instructionscreen.gd" id="1_dxu6h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x1rp3"]
+font_size = 89
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_dxu6h")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 436.0
+offset_top = -20.0
+offset_right = 1442.0
+offset_bottom = 229.0
+text = "Controls 
+- L to close/open-"
+label_settings = SubResource("LabelSettings_x1rp3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -68.0
+offset_top = 214.0
+offset_right = 1914.0
+offset_bottom = 631.0
+text = "Move: WASD
+Run: Hold Shift
+Jump: Space (Press twice to double jump)
+Shoot: Left Click
+Reload: R
+Crouch: C
+Reset Money + Upgrades: Opt + Shift + P"
+label_settings = SubResource("LabelSettings_x1rp3")
+horizontal_alignment = 1
+vertical_alignment = 1

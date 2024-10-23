@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://upgradescreen.gd" id="1_6h4t8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0ts1x"]
-font_size = 54
+font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_fucpx"]
 font_size = 30
@@ -19,12 +19,15 @@ offset_bottom = 222.0
 
 [node name="Label" type="Label" parent="Continue"]
 layout_mode = 0
-offset_left = 45.0
-offset_top = 19.0
-offset_right = 291.0
-offset_bottom = 120.0
-text = "Continue"
+offset_left = -71.0
+offset_top = -17.0
+offset_right = 391.0
+offset_bottom = 134.0
+text = "Continue
+Upgrades 50 each"
 label_settings = SubResource("LabelSettings_0ts1x")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 58.0
