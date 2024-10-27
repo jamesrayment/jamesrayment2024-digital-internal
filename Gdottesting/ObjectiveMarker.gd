@@ -22,4 +22,3 @@ func _on_body_entered(body):
 		upgrade_scene.emit()
 		get_tree().change_scene_to_file.bind("res://upgradescreen.tscn").call_deferred()
 		queue_free()
-		

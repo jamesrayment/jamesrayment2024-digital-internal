@@ -76,7 +76,7 @@ func _physics_process(delta):
 	#check for if enemy can hit player
 	
 	
-# Code for when the vision timer times out and checks if player is within visionn cone
+# Code for when the vision timer times out and checks if player is within vision cone
 func _on_vision_timer_timeout():
 	var overlaps = $VisionCone.get_overlapping_bodies()
 	if overlaps.size() > 0:
@@ -110,18 +110,18 @@ func _on_vision_timer_timeout():
 func update_target_location(target_location):
 	nav_agent.set_target_position(target_location)
 
-# 
+# Checks for if play is in range
 func _on_attack_area_body_entered(body):
 	if body.is_in_group("player"):
 		enemy_in_range = true
 		$attack_delay.start()
 
-
+# On player death
 func _on_player_player_death():
 	player_dead = true
 
 
-
+#If player leaves range
 func _on_attack_area_body_exited(body):
 	if body.is_in_group("player"):
 		enemy_in_range = false

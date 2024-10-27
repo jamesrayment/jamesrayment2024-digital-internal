@@ -2,15 +2,16 @@ extends Node
 
 var money = 0
 
-#Speed Level
+# Speed Level
 var upgradelevel = 0
 
-#Ammo Level
+# Ammo Level
 var upgradelevel2 = 0
 
-#Health Level
+# Health Level
 var upgradelevel3 = 0
 
+# Game Level
 var level = 1
 
 var save_path = "user://variable.save"
@@ -25,6 +26,7 @@ func _process(delta):
 	pass
 	
 
+# Save variables
 func save():
 	print(money)
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
@@ -33,6 +35,7 @@ func save():
 	file.store_var(upgradelevel2)
 	file.store_var(upgradelevel3)
 
+# load variables
 func load_data():
 	if FileAccess.file_exists(save_path):
 		var file = FileAccess.open(save_path, FileAccess.READ)

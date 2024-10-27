@@ -38,9 +38,8 @@ func _input(event):
 	if event.is_action_pressed("Reload") and reloading == false:
 		reloading = true
 		_reload()
-		
-		
 
+# Function for shooting and updating ammo
 func dealdamage():
 	ammo -= 1
 	print(ammo)
@@ -56,6 +55,7 @@ func dealdamage():
 func _process(delta):
 	pass
 
+# Particle activation
 func _shoot():
 	if $Debris_particles.emitting == false:
 		ANIMATIONPLAYER.play("Shoot")
@@ -64,9 +64,11 @@ func _shoot():
 		$Debris_particles.restart
 		_shoot()
 
+# Reload animation
 func _reload():
 	ANIMATIONPLAYER.play("Reload")
-	
+
+# On reload finish
 func reloadfinish():
 	ammo = pistolmaxammo
 	print(ammo)

@@ -14,6 +14,7 @@ func _ready():
 func _process(delta):
 	pass
 
+# Show and hide screen
 func _input(event):
 	if event.is_action_pressed("Controls") and instructions_open == false:
 		$Label.show()

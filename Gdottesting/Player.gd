@@ -29,7 +29,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var save_nodes = get_tree().get_nodes_in_group("persist")
 
-var pause = false
 
 #headbob animplayer
 @onready var ANIMATIONPLAYER_headbob = $CollisionShape3D/Neck/Camera3D/AnimationPlayer
@@ -63,15 +62,6 @@ func _input(event):
 	
 	if event.is_action_pressed("Crouch"):
 		toggle_crouch()
-	
-	if event.is_action_pressed("esc") and pause == false:
-		get_tree().paused = true
-		print("paused")
-		pause = true
-	elif event.is_action_pressed("esc") and pause == true:
-		get_tree().paused = false
-		print("unpaused")
-		pause = false
 	
 	if event.is_action_pressed("debug"):
 		global.money = 0
@@ -116,20 +106,16 @@ func _physics_process(delta):
 	if direction != Vector3():
 		ANIMATIONPLAYER_headbob.play("headbob")
 
-	#sprint mechanics
+	# Sprint mechanics
 	if Input.is_action_just_pressed("Shift"):
 		ANIMATIONPLAYER_headbob.speed_scale = 2
 		SPEED = 10.0
 	elif Input.is_action_just_released("Shift"):
 		ANIMATIONPLAYER_headbob.speed_scale = 1
 		SPEED = 5.0
-
 	global.save()
-
-	
 	get_node("/root/Node3D/Player/CollisionShape3D/Neck/currentmoney").text = str("Money = ", global.money)
-	
-	
+
 func toggle_crouch():
 	if _is_crouching == true:
 		ANIMATIONPLAYER.play("crouch", -1, -crouch_speed, true)
@@ -137,7 +123,7 @@ func toggle_crouch():
 		ANIMATIONPLAYER.play("crouch", -1, crouch_speed)
 	_is_crouching = !_is_crouching
 
-
+# When enemy hits player
 func _on_enemy_enemy_hit():
 	health -= 50
 	print("damage")
